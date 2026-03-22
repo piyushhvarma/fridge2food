@@ -56,15 +56,15 @@ export default function Home() {
 
           {/* Initial Welcome Message */}
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full min-h-[60vh] sm:min-h-[60vh] animate-in fade-in duration-700 w-full px-2 sm:px-4 relative z-20 pt-12 sm:pt-0">
-              <h1 className="text-4xl sm:text-7xl font-extrabold tracking-tight text-white drop-shadow-lg mb-4 sm:mb-8 text-center leading-tight">
+            <div className="flex flex-col items-center justify-center h-full min-h-[50vh] sm:min-h-[60vh] animate-in fade-in duration-700 w-full px-4 relative z-20">
+              <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-white drop-shadow-lg mb-8 text-center leading-tight">
                 What's in your{" "}
                 <LineShadowText className="italic" shadowColor="black">
                   fridge?
                 </LineShadowText>
               </h1>
 
-              <div className="w-full max-w-2xl shadow-lg rounded-[1.5rem] bg-black/40 backdrop-blur-md border border-white/20 z-10 transition-all mb-4 sm:mb-6 pointer-events-auto">
+              <div className="w-full max-w-2xl shadow-lg rounded-[1.5rem] bg-black/40 backdrop-blur-md border border-white/20 z-10 transition-all mb-6 pointer-events-auto">
                 <PromptInputBox
                   value={input}
                   onChange={setInput}
@@ -228,12 +228,12 @@ function StreamedRecipe({ recipe }: { recipe: DeepPartial<Recipe> }) {
 
 function PantryQuickSelect({ items, onSelect }: { items: string[], onSelect: (item: string) => void }) {
   return (
-    <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 px-1 sm:px-2 animate-in fade-in slide-in-from-bottom-2 duration-500 delay-300 pb-2">
+    <div className="flex flex-wrap justify-center gap-2 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500 delay-300 pb-2">
       {items.map(item => (
         <button
           key={item}
           onClick={() => onSelect(item)}
-          className="pointer-events-auto px-3 py-1.5 sm:px-4 sm:py-2 bg-black/50 backdrop-blur-md border border-white/20 rounded-full text-xs sm:text-sm font-semibold text-white hover:bg-black/70 hover:scale-105 transition-all shadow-sm active:scale-95 drop-shadow-md"
+          className="pointer-events-auto px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-full text-sm font-semibold text-white hover:bg-black/60 hover:scale-105 transition-all shadow-sm active:scale-95 drop-shadow-md"
         >
           {item}
         </button>
