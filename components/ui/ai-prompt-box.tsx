@@ -44,7 +44,7 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, ...props }, ref) => (
   <textarea
     className={cn(
-      "flex w-full rounded-md border-none bg-transparent px-2 py-2 sm:px-4 sm:py-3 text-base sm:text-lg text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[40px] resize-none scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/40",
+      "flex w-full rounded-md border-none bg-transparent px-4 py-3 text-lg text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[48px] resize-none scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/40",
       className
     )}
     ref={ref}
@@ -447,7 +447,7 @@ interface PromptInputBoxProps {
 export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref: React.Ref<HTMLDivElement>) => {
   const { value, onChange, onSend = () => { }, isLoading = false, placeholder = "Type your message here...", className } = props;
   const [internalInput, setInternalInput] = React.useState("");
-  
+
   const input = value !== undefined ? value : internalInput;
   const setInput = (newVal: string) => {
     if (onChange) onChange(newVal);
@@ -539,7 +539,7 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
       if (isHealthy) modifiers.push("Healthy");
       if (isQuick) modifiers.push("Quick");
       if (isSpicy) modifiers.push("Spicy");
-      
+
       const modifierString = modifiers.length > 0 ? `[Modifiers: ${modifiers.join(", ")}] ` : "";
       const formattedInput = modifierString ? `${modifierString} ${input}` : input;
       onSend(formattedInput, files);
