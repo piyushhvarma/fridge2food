@@ -6,6 +6,7 @@ import type { Recipe } from "@/lib/schema";
 import { useChat } from "ai/react";
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import PhysicsPlayground from "@/components/PhysicsPlayground";
+import { motion, AnimatePresence } from "framer-motion";
 
 type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]
@@ -89,7 +90,7 @@ export default function Home() {
                   items={[
                     "Paneer", "Egg", "Chicken", "Milk", "Cheese", "Flour",
                     "Besan", "Chilli", "Masala", "Potato", "Peas", "Capsicum"
-                  ]}
+                  ].filter(item => !input.toLowerCase().includes(item.toLowerCase()))}
                   onSelect={(item) => {
                     const separator = input.trim() ? ", " : "";
                     setInput(input + separator + item);
@@ -238,16 +239,23 @@ function StreamedRecipe({ recipe }: { recipe: DeepPartial<Recipe> }) {
 
 function PantryQuickSelect({ items, onSelect }: { items: string[], onSelect: (item: string) => void }) {
   return (
-    <div className="flex flex-wrap justify-center gap-2 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500 delay-300 pb-2">
-      {items.map(item => (
-        <button
-          key={item}
-          onClick={() => onSelect(item)}
-          className="pointer-events-auto px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-full text-sm font-semibold text-white hover:bg-black/60 hover:scale-105 transition-all shadow-sm active:scale-95 drop-shadow-md"
-        >
-          {item}
-        </button>
-      ))}
+    <div className="flex flex-wrap items-start justify-center gap-1.5 sm:gap-2 px-1 sm:px-2 pb-2 min-h-[120px] sm:min-h-[80px]">
+      <AnimatePresence mode="popLayout">
+        {items.map(item => (
+          <motion.button
+            key={item}
+            layout
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            onClick={() => onSelect(item)}
+            className="pointer-events-auto px-3 py-1.5 sm:px-4 sm:py-2 bg-black/50 backdrop-blur-md border border-white/20 rounded-full text-xs sm:text-sm font-semibold text-white hover:bg-black/70 hover:scale-105 transition-all shadow-sm active:scale-95 drop-shadow-md origin-center"
+          >
+            {item}
+          </motion.button>
+        ))}
+      </AnimatePresence>
     </div>
   );
 }
