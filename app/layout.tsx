@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Pixelify_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const pixelify = Pixelify_Sans({
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en" className={`${pixelify.variable} dark antialiased`}>
       <body className={`min-h-screen bg-zinc-950 ${pixelify.className} text-zinc-100`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
