@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   description:
     "Instant recipes from your leftovers with AI. Powered by Gemini.",
   keywords: ["recipe", "AI", "leftovers", "midnight", "chef", "cooking"],
+  icons: {
+    icon: [
+      { url: "/favicon.png" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
