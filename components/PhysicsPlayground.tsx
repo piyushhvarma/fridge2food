@@ -73,7 +73,7 @@ export default function PhysicsPlayground() {
 
     // 3. Create Solid Boundaries
     const thickness = 1000; // Super thick to prevent physics clipping/falling through!
-    const wallOptions: Matter.IBodyDefinition = {
+    const wallOptions = {
       isStatic: true,
       render: { fillStyle: "transparent" },
       friction: 0.8,
