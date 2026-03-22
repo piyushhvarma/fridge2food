@@ -18,6 +18,7 @@ type DeepPartial<T> = {
 
 
 export default function Home() {
+  const [showPhysics, setShowPhysics] = useState(true);
   const { messages, input, setInput, append, isLoading } = useChat({
     api: "/api/chat",
   });
@@ -41,13 +42,22 @@ export default function Home() {
     <div
       className="flex h-[100dvh] w-full flex-col bg-[url('/background1.gif')] bg-cover bg-center bg-no-repeat overflow-hidden relative items-center rounded-none border-none p-0"
     >
-      <div className="absolute inset-0 z-0">
-        <PhysicsPlayground />
-      </div>
+      {showPhysics && (
+        <div className="absolute inset-0 z-0 animate-in fade-in duration-1000">
+          <PhysicsPlayground />
+        </div>
+      )}
 
-      {/* Top-Left Logo (Persistent) */}
-      <header className="absolute top-0 left-0 p-2 sm:p-4 z-50 pointer-events-none">
+      {/* Top Header (Persistent) */}
+      <header className="absolute top-0 left-0 w-full p-2 sm:p-4 z-50 pointer-events-none flex items-center justify-between">
         <img src="/1.gif" alt="fridge2food" className="h-12 sm:h-16 w-auto pointer-events-auto drop-shadow-lg object-contain" />
+        <button
+          onClick={() => setShowPhysics(!showPhysics)}
+          className="pointer-events-auto flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-full text-xs sm:text-sm font-medium text-white/80 hover:text-white hover:bg-black/60 transition-all shadow-sm active:scale-95 drop-shadow-lg mr-2 sm:mr-4 tracking-wide"
+          aria-label="Toggle background animation"
+        >
+          {showPhysics ? "Motion: On" : "Motion: Off"}
+        </button>
       </header>
 
       {/* Scrollable Chat Area */}
